@@ -2,14 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Library Dashboard</title>
     <link rel="stylesheet" href="stylesheet.css" />
-    <script src="script.js"></script>
   </head>
-
   <body>
     <header>
       <div class="header-banner">
@@ -17,15 +14,37 @@
         <button class="login-button">Login</button>
       </div>
     </header>
+    <div class="container">
+      <main class="main-section">
+        <form id="add-book-form" class="add-book-section">
+          <label for="title">Book title</label>
+          <input type="text" id="title" placeholder="Enter Title" />
+      
+          <label for="author">Author</label>
+          <input type="text" id="author" placeholder="Enter Author" />
+      
+          <label for="pages">Pages</label>
+          <input type="number" id="pages" placeholder="Total Pages" />
+      
+          <label for="read">Have you read this book?</label>
+          <input type="radio" name="read-radio" id="choice-yes" value="yes" />
+          <label for="choice-yes">Yes</label>
+          <input type="radio" name="read-radio" id="choice-no" value="no" />
+          <label for="choice-no">No</label>
+      
+          <button id="submit-button" type="submit">Submit</button>
+        </form>
+        <section class="card-section">
+          <div id="book-cards">
+            <!-- I can add my read book cards here -->
+          </div>
+        </section>
+      </main>
+      
 
-    <main class="main-section">
-      <div class="add-book-section">
-        <form action="title"></form>
-        <form action="author"></form>
-        <form action="pages"></form>
-        <form action="read?"></form>
-        <button class="add-book-button">Add Book</button>
-      </div>
-    </main>
+      <button id="add-book-button">Add Book</button>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
