@@ -40,6 +40,7 @@ form.addEventListener("submit", (event) => {
 function createBookCard(title, author, pages, read) {
   const card = document.createElement("div");
   card.classList.add("book-card");
+  card.read = read;
 
   card.innerHTML = `
     <h2>${title}</h2>
@@ -47,10 +48,17 @@ function createBookCard(title, author, pages, read) {
     <p>Pages: ${pages}</p>
     <p>Read: ${read ? "Yes" : "No"}</p>
     <button class="delete-button">Delete</button>
+    <button class="read-button">${read ? "Change to unread" : "Change to read"}</button>
   `;
 
   card.querySelector(".delete-button").addEventListener("click", () => {
     card.remove();
+  });
+
+  card.querySelector(".read-button").addEventListener("click", () => {
+    card.read = !card.read;
+    card.querySelector("p:last-of-type").textContent = `Read: ${card.read ? "Yes" : "No"}`;
+    card.querySelector(".read-button").textContent = card.read ? "Change to unread" : "Change to read";
   });
 
   return card;

@@ -1,4 +1,4 @@
-/* General Styles */
+/* Main styles */
 body {
   background: #f5f5f5;
   font: 16px/1.5 Arial, sans-serif;
@@ -59,7 +59,7 @@ button {
   background: #2e7853;
 }
 
-/* Add Book Section Styles */
+/* Add Book Section FOrm Styles */
 .add-book-section {
   position: absolute;
   top: -150%;
@@ -94,7 +94,7 @@ button {
   background: #2e7853;
 }
 
-/* Book Card Styles */
+/* Styles for the book cards added */
 
 #book-cards {
   display: flex;
@@ -150,6 +150,10 @@ button {
 }
 
 .book-card .delete-button {
+  display: block;
+  color: #2e7853;
+}
+.book-card .read-button {
   display: block;
   color: #2e7853;
 }
