@@ -22,7 +22,12 @@ form.addEventListener("submit", (event) => {
   const readInput = document.querySelector('input[name="read-radio"]:checked');
 
   // Check if any of the form inputs are empty or if "readInput" is not selected
-  if (!titleInput.value || !authorInput.value || !pagesInput.value || !readInput) {
+  if (
+    !titleInput.value ||
+    !authorInput.value ||
+    !pagesInput.value ||
+    !readInput
+  ) {
     // Log an error message and exit the function
     console.error("Missing form data");
     return;
@@ -34,108 +39,128 @@ form.addEventListener("submit", (event) => {
   const pages = pagesInput.value;
   const read = readInput.value === "yes";
 
- // Define a BookCard class
-class BookCard {
-  constructor(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.element = this.createBookCard();
-  }
+  // Define a BookCard class
+  class BookCard {
+    constructor(title, author, pages, read) {
+      this.title = title;
+      this.author = author;
+      this.pages = pages;
+      this.read = read;
+      this.element = this.createBookCard();
+    }
 
-  createBookCard() {
-    const card = document.createElement("div");
-    card.classList.add("book-card");
-    card.read = this.read;
+    createBookCard() {
+      const card = document.createElement("div");
+      card.classList.add("book-card");
+      card.read = this.read;
 
-    card.innerHTML = `
+      card.innerHTML = `
       <h2>${this.title}</h2>
       <p>Author: ${this.author}</p>
       <p>Pages: ${this.pages}</p>
       <p>Read: ${this.read ? "Yes" : "No"}</p>
       <button class="delete-button">Delete</button>
-      <button class="read-button">${this.read ? "Change to unread" : "Change to read"}</button>
+      <button class="read-button">${
+        this.read ? "Change to unread" : "Change to read"
+      }</button>
     `;
 
-    card.querySelector(".delete-button").addEventListener("click", () => {
-      card.remove();
-    });
+      card.querySelector(".delete-button").addEventListener("click", () => {
+        card.remove();
+      });
 
-    card.querySelector(".read-button").addEventListener("click", () => {
-      this.read = !this.read;
-      card.querySelector("p:last-of-type").textContent = `Read: ${this.read ? "Yes" : "No"}`;
-      card.querySelector(".read-button").textContent = this.read ? "Change to unread" : "Change to read";
-    });
+      card.querySelector(".read-button").addEventListener("click", () => {
+        this.read = !this.read;
+        card.querySelector("p:last-of-type").textContent = `Read: ${
+          this.read ? "Yes" : "No"
+        }`;
+        card.querySelector(".read-button").textContent = this.read
+          ? "Change to unread"
+          : "Change to read";
+      });
 
-    return card;
-  }
-}
-
-// Add a submit event listener to the form
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const titleInput = document.querySelector("#title");
-  const authorInput = document.querySelector("#author");
-  const pagesInput = document.querySelector("#pages");
-  const readInput = document.querySelector('input[name="read-radio"]:checked');
-
-  if (!titleInput.value || !authorInput.value || !pagesInput.value || !readInput) {
-    console.error("Missing form data");
-    return;
+      return card;
+    }
   }
 
-  const title = titleInput.value;
-  const author = authorInput.value;
-  const pages = pagesInput.value;
-  const read = readInput.value === "yes";
+  // Add a submit event listener to the form
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const titleInput = document.querySelector("#title");
+    const authorInput = document.querySelector("#author");
+    const pagesInput = document.querySelector("#pages");
+    const readInput = document.querySelector(
+      'input[name="read-radio"]:checked'
+    );
 
-  // Create a new book card instance and append it to the bookCardContainer
-  const bookCard = new BookCard(title, author, pages, read);
-  bookCardContainer.appendChild(bookCard.element);
+    if (
+      !titleInput.value ||
+      !authorInput.value ||
+      !pagesInput.value ||
+      !readInput
+    ) {
+      console.error("Missing form data");
+      return;
+    }
 
-  titleInput.value = "";
-  authorInput.value = "";
-  pagesInput.value = "";
-  readInput.checked = false;
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const pages = pagesInput.value;
+    const read = readInput.value === "yes";
 
-  addBookSection.classList.toggle("active");
-});
+    // Create a new book card instance and append it to the bookCardContainer
+    const bookCard = new BookCard(title, author, pages, read);
+    bookCardContainer.appendChild(bookCard.element);
 
-// Define a function to create a book card element with the given title, author, pages, and read values
-function createBookCard(title, author, pages, read) {
-  // Create a new div element for the book card
-  const card = document.createElement("div");
+    titleInput.value = "";
+    authorInput.value = "";
+    pagesInput.value = "";
+    readInput.checked = false;
 
-  // Add the "book-card" class to the card
-  card.classList.add("book-card");
+    addBookSection.classList.toggle("active");
+  });
 
-  // Set the "read" property of the card to the provided "read" value
-  card.read = read;
+  // Define a function to create a book card element with the given title, author, pages, and read values
+  function createBookCard(title, author, pages, read) {
+    // Create a new div element for the book card
+    const card = document.createElement("div");
 
-  // Set the inner HTML of the card to display book information and buttons
-  card.innerHTML = `
+    // Add the "book-card" class to the card
+    card.classList.add("book-card");
+
+    // Set the "read" property of the card to the provided "read" value
+    card.read = read;
+
+    // Set the inner HTML of the card to display book information and buttons
+    card.innerHTML = `
     <h2>${title}</h2>
     <p>Author: ${author}</p>
     <p>Pages: ${pages}</p>
     <p>Read: ${read ? "Yes" : "No"}</p>
     <button class="delete-button">Delete</button>
-    <button class="read-button">${read ? "Change to unread" : "Change to read"}</button>
+    <button class="read-button">${
+      read ? "Change to unread" : "Change to read"
+    }</button>
   `;
 
-  // Add click event listeners to the "delete" and "read" buttons within the card
-  card.querySelector(".delete-button").addEventListener("click", () => {
-    // Remove the card when the "delete" button is clicked
-    card.remove();
-  });
+    // Add click event listeners to the "delete" and "read" buttons within the card
+    card.querySelector(".delete-button").addEventListener("click", () => {
+      // Remove the card when the "delete" button is clicked
+      card.remove();
+    });
 
-  card.querySelector(".read-button").addEventListener("click", () => {
-    // Toggle the "read" property and update the display text when the "read" button is clicked
-    card.read = !card.read;
-    card.querySelector("p:last-of-type").textContent = `Read: ${card.read ? "Yes" : "No"}`;
-    card.querySelector(".read-button").textContent = card.read ? "Change to unread" : "Change to read";
-  });
+    card.querySelector(".read-button").addEventListener("click", () => {
+      // Toggle the "read" property and update the display text when the "read" button is clicked
+      card.read = !card.read;
+      card.querySelector("p:last-of-type").textContent = `Read: ${
+        card.read ? "Yes" : "No"
+      }`;
+      card.querySelector(".read-button").textContent = card.read
+        ? "Change to unread"
+        : "Change to read";
+    });
 
-  // Return the created card element
-  return card;
-}})
+    // Return the created card element
+    return card;
+  }
+});

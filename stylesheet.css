@@ -4,6 +4,7 @@ body {
   font: 16px/1.5 Arial, sans-serif;
   margin: 0;
 }
+
 button {
   transition: all 0.5s ease;
   color: #fff;
@@ -27,14 +28,17 @@ button {
   align-items: center;
   padding: 10px 20px;
 }
+
 .logo {
   font: bold 24px/1 sans-serif;
 }
+
 .login-button {
   font: 20px/1 sans-serif;
   padding: 10px 20px;
   border-radius: 5px;
 }
+
 .login-button:hover {
   color: #2e7853;
   background: #fff;
@@ -46,6 +50,7 @@ button {
   justify-content: center;
   align-items: center;
 }
+
 #add-book-button {
   font: 30px/1 sans-serif;
   padding: 20px;
@@ -54,6 +59,7 @@ button {
   display: block;
   color: #2e7853;
 }
+
 #add-book-button:hover {
   color: #fff;
   background: #2e7853;
@@ -77,18 +83,22 @@ button {
   align-items: flex-start;
   background: #fff;
 }
+
 .add-book-section.active {
   top: 50%;
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
   z-index: 9999;
 }
+
 .add-book-section .form .form-element {
   margin: 15px 0;
 }
+
 #submit-button {
   color: #2e7853;
 }
+
 #submit-button:hover {
   color: #fff;
   background: #2e7853;
@@ -153,6 +163,7 @@ button {
   display: block;
   color: #2e7853;
 }
+
 .book-card .read-button {
   display: block;
   color: #2e7853;
